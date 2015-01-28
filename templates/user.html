@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}My User{% endblock %}
+
+{% block content %}
+<h1>My User</h1>
+
+<div class="row" style="padding-bottom: 10px; padding-top: 15px;">
+    <div class="col-md-1">Full name</div>
+    <div class="col-md-8">{{ spuser['name'] }} {{ spuser['surname'] }}</div>
+</div>
+
+
+<div class="row" style="padding-bottom: 10px;">
+    <div class="col-md-1">E-mail</div>
+    <div class="col-md-8">{{ spuser['email'] }}</div>
+</div>
+
+<div class="row" style="padding-bottom: 10px;">
+    <div class="col-md-1">Mobile</div>
+    <div class="col-md-8">{{ spuser['mobile'] }}</div>
+</div>
+
+<div class="row" style="padding-bottom: 20px;">
+    <div class="col-md-1">SSH Key</div>
+    <div class="col-md-8">
+        {% for ssh in sshkey %}
+            {{ ssh }}
+        {% endfor %}
+   </div>
+</div>
+
+
+
+
+<a href="/password" class="btn btn-primary">Change Password</a>
+<a href="/sshkey" class="btn btn-primary">Change SSH Key</a>
+
+{% endblock %}
+

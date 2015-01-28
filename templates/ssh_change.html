@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Change SSH Key{% endblock %}
+
+{% block content %}
+<h1 style="padding-bottom: 15px;">Change SSH Key</h1>
+
+<p style="padding-bottom: 10px;">Copy &amp; paste your public SSH key below: </p>
+
+<div class="bg-danger">
+{% for error in form.sshkey.errors %}
+      <p>{{ error }}</p>
+{% endfor %}
+</div>
+
+<form method=post action="/sshkey" role="form">
+{{ form.csrf_token }}
+
+  <div class="form-group">
+    <label for="{{form.sshkey.name}}" style="width: 150px; vertical-align: top;">{{ form.sshkey.label }}</label>
+    {{ form.sshkey }}
+  </div>
+
+
+
+<button type="submit" class="btn btn-primary">Change SSH Key</button>
+</form>
+
+
+{% endblock %}
