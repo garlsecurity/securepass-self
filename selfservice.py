@@ -93,7 +93,8 @@ def user_ssh():
 
 if __name__ == '__main__':
     app.secret_key = 'generate_secret_key'
-    app.config['CAS_SERVER'] = 'https://beta.secure-pass.net/'
+    #app.config['CAS_SERVER'] = 'https://beta.secure-pass.net/'
+    app.config['CAS_SERVER'] = 'https://dragoon/'
     app.config['CAS_AFTER_LOGIN'] = 'user_details'
     app.config['CAS_LOGIN_ROUTE'] = '/cas/login'
     app.run()
