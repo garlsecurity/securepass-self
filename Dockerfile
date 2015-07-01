@@ -10,7 +10,7 @@ RUN yum -y update
 RUN rpm -ihv http://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 
 ## Install pre/coreq
-RUN yum -y install httpd mod_wsgi python-pip python-virtualenv gcc zlib-devel libjpeg-turbo-devel MySQL-python supervisor uwsgi-plugin-python
+RUN yum -y install gcc python-pip python-virtualenv uwsgi-plugin-python uwsgi-router-http 
 
 ## Cleanup
 RUN yum -y clean all
@@ -22,12 +22,7 @@ COPY . /srv/securepass-self
 ## Install pip requisites
 RUN virtualenv --system-site-packages /srv/securepass-self ; source /srv/securepass-self/bin/activate ; cd /srv/securepass-self ; pip install -r requirements.txt
 
-## Copy apache conf
-#COPY extras/dreamliner.conf /etc/httpd/conf.d/dreamliner.conf
-#COPY extras/supervisord.conf /etc/supervisord.conf 
+EXPOSE 9090
 
-EXPOSE 80
-
-WORKDIR /srv/securepass-core
-CMD /bin/bash
-#CMD /usr/bin/supervisord
+WORKDIR /srv/securepass-self
+CMD bash /srv/securepass-self/contrib/selfservice.sh
