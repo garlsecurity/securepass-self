@@ -16,6 +16,9 @@ __EOF__
 
 echo SecurePass application ID: $SP_APP_ID
 
+## Generate random string for cookies
+RAND=$(openssl rand -hex 16)
+sed -i -e "s/generate_secret_key/$RAND/" /srv/securepass-self/selfservice.py 
 
 ## Load WSGI
 uwsgi --ini /srv/securepass-self/contrib/selfservice.ini
